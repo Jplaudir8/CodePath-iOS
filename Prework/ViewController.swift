@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBOutlet weak var billAmountTextField: UITextField!
@@ -22,8 +22,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.billAmountTextField.becomeFirstResponder()
+        }
     }
-
+    
     @IBAction func calculateTip(_ sender: Any) {
         // Get bill amount from text field input
         let bill = Double(billAmountTextField.text!) ?? 0
